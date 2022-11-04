@@ -8,10 +8,20 @@ import { CheckBoxSection } from "./components/CheckBoxSection";
 import { Status } from "./components/Status";
 
 const App = () => {
+  const onCheckboxChanged = (e: ChangeEvent<HTMLInputElement>) => {
+    setCheckboxStatus((state) => {
+      return state.map((c) => ({
+        ...c,
+        isChecked: e.target.id === c.id ? e.target.checked : c.isChecked,
+        strength: "STRONG",
+      }));
+    });
+  };
   const [inputValue, setinputValue] = useState<string>("13");
   const [password, setpassword] = useState(" Please Press Generate Button");
-  const [strengthStatus, setstrength] = useState("TOO WEAK!");
-  const [checkBoxStatus, setcheckBoxStatus] = useState([]);
+  const [checkboxStatus, setCheckboxStatus] = useState(checkboxData);
+
+  const strength: number = checkboxStatus.filter((c) => c.isChecked).length;
 
   const handleChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -72,12 +82,16 @@ const App = () => {
               id="customSlider"
             />
           </div>
-          <CheckBoxSection data={checkboxData} />:
+          <CheckBoxSection
+            data={checkboxStatus}
+            onCheckboxChanged={onCheckboxChanged}
+          />
+          :
           <div className="px-10 py-6 mb-8 bg-primary-dark flex justify-between items-center">
             <div className="text-white-gray text-[18px] uppercase font-bold">
               Strength
             </div>
-            <Status strength={strengthStatus} />
+            <Status strength={strength} />
           </div>
           <button
             type="button"

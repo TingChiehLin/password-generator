@@ -1,17 +1,17 @@
 import React, { ChangeEvent } from "react";
 
-type CheckBoxProps = {
+export type CheckBoxProps = {
+  id: string;
   text: string;
+  isChecked: boolean;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const CheckBox = ({ text }: CheckBoxProps) => {
-  const checkBoxHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const isCheck = e.target.checked;
-  };
-
+export const CheckBox = ({ id, text, isChecked, onChange }: CheckBoxProps) => {
   return (
     <div className="flex items-center mb-5">
       <input
+        id={id}
         className="
           appearance-none
           h-5 w-5 border
@@ -29,8 +29,8 @@ export const CheckBox = ({ text }: CheckBoxProps) => {
           outline-none    
           "
         type="checkbox"
-        value="true"
-        onChange={checkBoxHandler}
+        value={String(isChecked)}
+        onChange={onChange}
       />
       <label
         className=" 

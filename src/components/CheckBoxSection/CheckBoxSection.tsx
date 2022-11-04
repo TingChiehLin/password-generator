@@ -1,21 +1,27 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 
-import { CheckBox } from "../CheckBox/index";
-
-type checkBoxDataProp = {
-  id: number;
-  text: string;
-};
+import { CheckBox, CheckBoxProps } from "../CheckBox/index";
 
 type checkBoxProp = {
-  data: checkBoxDataProp[];
+  //Omit => remove onChange event
+  data: Omit<CheckBoxProps, "onChange">[];
+  onCheckboxChanged: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const CheckBoxSection: FC<checkBoxProp> = ({ data }) => {
+export const CheckBoxSection: FC<checkBoxProp> = ({
+  data,
+  onCheckboxChanged,
+}) => {
   return (
     <div>
-      {data.map((e) => (
-        <CheckBox key={e.id} text={e.text} />
+      {data.map((e, index) => (
+        <CheckBox
+          key={e.id}
+          id={e.id}
+          text={e.text}
+          isChecked={e.isChecked}
+          onChange={onCheckboxChanged}
+        />
       ))}
     </div>
   );

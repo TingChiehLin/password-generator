@@ -1,34 +1,33 @@
-type statusDataType = {
-  id: number;
+type checkboxDataType = {
+  id: string;
+  isChecked: boolean;
+  text: string;
   strength: string;
 };
 
-export const statusData: statusDataType[] = [
-  { id: 0, strength: "TOO WEAK!" },
-  { id: 1, strength: "WEAK" },
-  { id: 2, strength: "MEDIUM" },
-  { id: 3, strength: "STRONG" },
-];
-
-export const checkboxData = [
+export const checkboxData: checkboxDataType[] = [
   {
-    id: 0,
-    isCkecked: false,
+    id: "chkUppercase",
+    isChecked: false,
     text: "Include Uppercase Letters",
+    strength: "Normal",
   },
   {
-    id: 1,
-    isCkecked: false,
+    id: "chkLowercase",
+    isChecked: false,
     text: "Include Lowercase Letters",
+    strength: "Normal",
   },
   {
-    id: 2,
-    isCkecked: false,
+    id: "chkNumber",
+    isChecked: false,
     text: "Include Numbers",
+    strength: "Normal",
   },
   {
-    id: 3,
-    isCkecked: false,
+    id: "chkSymbol",
+    isChecked: false,
     text: "Include Symbols",
+    strength: "Normal",
   },
 ];
