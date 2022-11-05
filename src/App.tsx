@@ -16,7 +16,7 @@ const App = () => {
       }));
     });
   };
-  const [inputValue, setinputValue] = useState<string>("13");
+  const [inputValue, setinputValue] = useState<number>(10);
   const [password, setpassword] = useState(" Please Press Generate Button");
   const [checkboxStatus, setCheckboxStatus] = useState(checkboxData);
 
@@ -24,13 +24,15 @@ const App = () => {
 
   const handleChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
-    setinputValue(event.target.value);
+    setinputValue(Number(event.target.value));
   };
 
   const copyTextHandler = () => navigator.clipboard.writeText(password);
 
   const onGenerateHandler = () => {
-    console.log("generate password");
+    const randomNumber = Math.random() * (inputValue - 8) + 8;
+    const randomPassword = randomNumber.toString(36).slice(-8);
+    setpassword(String(randomPassword));
   };
 
   return (
@@ -76,8 +78,8 @@ const App = () => {
                         hover:hover-slider
                       "
               value={inputValue}
-              min="5"
-              max="20"
+              min="8"
+              max="14"
               id="customSlider"
             />
           </div>
