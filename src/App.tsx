@@ -13,7 +13,6 @@ const App = () => {
       return state.map((c) => ({
         ...c,
         isChecked: e.target.id === c.id ? e.target.checked : c.isChecked,
-        strength: "STRONG",
       }));
     });
   };

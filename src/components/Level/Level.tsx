@@ -1,25 +1,23 @@
 type LevelProp = {
-  strength: string;
+  strength: number;
   isHighlight: boolean;
 };
 
-export const Level = ({ strength, isHighlight }: LevelProp) => {
+export const Level = ({ isHighlight, strength }: LevelProp) => {
   let color = "#18171F";
   switch (strength) {
-    case "TOO WEAK!":
+    case 1:
       color = "#F64A4A";
       break;
-    case "WEAK":
+    case 2:
       color = "#FB7C58";
       break;
-    case "MEDIUM":
+    case 3:
       color = "#F8CD65";
       break;
-    case "STRONG":
+    case 4:
       color = "#A4FFAF";
       break;
-    default:
-      color = "#18171F";
   }
 
   return (

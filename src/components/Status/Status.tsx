@@ -15,8 +15,8 @@ export const Status: FC<StatusProps> = ({ strength }) => {
       {checkboxData.map((e, index) => (
         <Level
           key={e.id}
-          strength={e.strength}
           isHighlight={index <= strength - 1}
+          strength={strength}
         />
       ))}
     </div>
