@@ -10,6 +10,7 @@ import { Status } from "./components/Status";
 const App = () => {
   const onCheckboxChanged = (e: ChangeEvent<HTMLInputElement>) => {
     setCheckboxStatus((state) => {
+      console.log(state);
       return state.map((c) => ({
         ...c,
         isChecked: e.target.id === c.id ? e.target.checked : c.isChecked,
@@ -30,9 +31,14 @@ const App = () => {
   const copyTextHandler = () => navigator.clipboard.writeText(password);
 
   const onGenerateHandler = () => {
-    const randomNumber = Math.random() * (inputValue - 8) + 8;
-    const randomPassword = randomNumber.toString(36).slice(-8);
-    setpassword(String(randomPassword));
+    const isAllFalse = checkboxStatus.every((c) => c.isChecked === false);
+    if (isAllFalse) {
+      setpassword("Please click one of options");
+    } else {
+      const randomNumber = Math.random() * (inputValue - 8) + 8;
+      const randomPassword = randomNumber.toString(36).slice(-8);
+      setpassword(String(randomPassword));
+    }
   };
 
   return (
