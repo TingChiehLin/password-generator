@@ -11,7 +11,7 @@ export const checkboxData: checkboxDataType[] = [
     isChecked: false,
     text: "Include Uppercase Letters",
     generate: () => {
-      return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
     },
   },
   {
@@ -19,7 +19,7 @@ export const checkboxData: checkboxDataType[] = [
     isChecked: false,
     text: "Include Lowercase Letters",
     generate: () => {
-      return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
     },
   },
   {

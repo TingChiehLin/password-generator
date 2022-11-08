@@ -9,22 +9,6 @@ import { Status } from "./components/Status";
 
 const App = () => {
   const onCheckboxChanged = (e: ChangeEvent<HTMLInputElement>) => {
-    // switch (e.target.name) {
-    //   case "chkUppercase":
-    //     setUpper(!hasUpper);
-    //     break;
-    //   case "chkLowercase":
-    //     sethasLower(!hasLower);
-    //     break;
-    //   case "chkNumber":
-    //     sethasNumber(!hasNumber);
-    //     break;
-    //   case "chkSymbol":
-    //     sethasSymbol(!hasSymbol);
-    //     break;
-    //   default:
-    //     setpassword("Please Press Generate Button");
-    // }
     setCheckboxStatus((state) => {
       return state.map((c) => ({
         ...c,
@@ -35,10 +19,6 @@ const App = () => {
   const [inputValue, setinputValue] = useState<number>(10);
   const [password, setpassword] = useState("Please Press Generate Button");
   const [checkboxStatus, setCheckboxStatus] = useState(checkboxData);
-  const [hasUpper, setUpper] = useState<boolean>(false);
-  const [hasLower, sethasLower] = useState<boolean>(false);
-  const [hasNumber, sethasNumber] = useState<boolean>(false);
-  const [hasSymbol, sethasSymbol] = useState<boolean>(false);
   const strength: number = checkboxStatus.filter((c) => c.isChecked).length;
 
   const handleChangeEvent = (event: ChangeEvent<HTMLInputElement>) => {
@@ -48,64 +28,23 @@ const App = () => {
 
   const copyTextHandler = () => navigator.clipboard.writeText(password);
 
-
-
-  interface RandomFuncType extends typesArrKeyType {
-    upper: () => string;
-    lower: () => string;
-    number: () => string;
-    symbol: () => string;
-  }
-
-  interface typesArrKeyType {
-    [key: string]: () => string;
-  }
-
-  const randomFunc: RandomFuncType = {
-    upper: getRandomUpperCase,
-    lower: getRandomLowerCase,
-    number: getRandomNumber,
-    symbol: getRandomSymbol,
-  };
-
-  //[index: string]: string
-  //type typesArrKeyType = keyof typeof randomFunc;
-  //type typesArrIndexType = typeof randomFunc[typesArrKeyType];
-
   const onGenerateHandler = () => {
     const isAllFalse = checkboxStatus.every((c) => c.isChecked === false);
     if (isAllFalse) {
       setpassword("Please click one of options");
     } else {
-      const typesArr = [
-        { hasUpper },
-        { hasLower },
-        { hasNumber },
-        { hasSymbol },
-      ].filter((c) => Object.values(c)[0]);
-      console.log(typesArr);
-      //to get value from array of object
-      let çount = 0;
-      for (const c of typesArr) {
-        if (Object.values(c)[0] === true) çount++;
+      const selectedCheckboxes = checkboxStatus.filter((c) => c.isChecked);
+      setpassword("");
+      for (let i = 0; i < inputValue; i++) {
+        const randomIndex = Math.floor(
+          Math.random() * selectedCheckboxes.length
+        );
+        const randomCheckBox = selectedCheckboxes[randomIndex];
+        setpassword((pevString) => (pevString += randomCheckBox.generate()));
       }
-      console.log(çount);
-      for (let i = 0; i < inputValue; i += çount) {
-        typesArr.forEach((type) => {
-          const funcName = Object.keys(type)[0] as keyof RandomFuncType;
-          setpassword((pevString) => (pevString += randomFunc[funcName]()));
-        });
-      }
-      //1.Fliter out unchecked types
-      //2.Loop Over Length call generator function for each type
-      //3.Add generate pw to useState pw
-      //setpassword(String(randomPassword));
     }
   };
-  /*
-      const randomNumber = Math.random() * (inputValue - 8) + 8;
-      const randomPassword = randomNumber.toString(36).slice(-8);
-  */
+
   return (
     <>
       <div className="mt-32 w-2/4 mx-auto">

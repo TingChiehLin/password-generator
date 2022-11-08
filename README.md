@@ -64,6 +64,10 @@ You are able to expect functionalities with Job listings with filtering
 
 • [Random Number with Min and Max Value](https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range)
 
+• [FromCharCode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode)
+
+• [Some & Find](https://bobbyhadz.com/blog/javascript-check-if-array-contains-object)
+
 ### Demo
 
 You can see [Password generator](https://job-listing-filter-nine.vercel.app)
