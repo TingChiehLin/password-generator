@@ -7,7 +7,7 @@ export type CheckBoxProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export const CheckBox = ({ id, text, isChecked, onChange }: CheckBoxProps) => {
+export const CheckBox = ({ id, isChecked, text, onChange }: CheckBoxProps) => {
   return (
     <div className="flex items-center mb-5">
       <input
@@ -29,6 +29,7 @@ export const CheckBox = ({ id, text, isChecked, onChange }: CheckBoxProps) => {
           outline-none    
           "
         type="checkbox"
+        name={id}
         value={String(isChecked)}
         onChange={onChange}
       />

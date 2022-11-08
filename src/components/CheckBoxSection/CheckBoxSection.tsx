@@ -18,8 +18,8 @@ export const CheckBoxSection: FC<checkBoxProp> = ({
         <CheckBox
           key={e.id}
           id={e.id}
-          text={e.text}
           isChecked={e.isChecked}
+          text={e.text}
           onChange={onCheckboxChanged}
         />
       ))}
