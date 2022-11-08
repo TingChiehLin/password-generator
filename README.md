@@ -70,4 +70,4 @@ You are able to expect functionalities with Job listings with filtering
 
 ### Demo
 
-You can see [Password generator](https://job-listing-filter-nine.vercel.app)
+You can see [Password generator](https://password-generate-app-lime.vercel.app)
